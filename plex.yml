@@ -1,0 +1,17 @@
+rancher:
+  services:
+    plex:
+      image: linuxserver/plex
+      hostname: plex
+      restart: always
+      environment:
+        TZ: Europe/Stockholm
+        PGID: 1020
+        PUID: 1020
+        VERSION: latest
+      net: host
+      volumes:
+      - /mnt/nfs-1/config/plex:/config
+      - /mnt/nfs-1/config/plex/transcode:/transcode
+      - /mnt/nfs-1/Movies:/data
+      - /mnt/nfs-1/TV:/data

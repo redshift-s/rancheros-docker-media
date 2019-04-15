@@ -1,0 +1,15 @@
+rancher:
+  services:
+    jackett:
+      image: linuxserver/jackett
+      container_name: jackett
+      restart: always
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+      ports:
+      - 9117:9117
+      volumes:
+      - /mnt/nfs-1/config/jackett:/config
+      - /mnt/nfs-1/Downloads:/downloads

@@ -1,0 +1,15 @@
+rancher:
+  services:
+    lychee:
+      image: linuxserver/lychee
+      container_name: lychee
+      restart: always
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+      ports:
+      - 5467:80
+      volumes:
+      - /mnt/nfs-1/config/lychee:/config
+      - /mnt/nfs-1/Pictures:/pictures

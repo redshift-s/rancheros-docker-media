@@ -1,0 +1,18 @@
+rancher:
+  services:
+    portainer:
+      image: portainer/portainer
+      container_name: portainer
+      restart: always
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+      labels:
+        io.rancher.os.after: console, preload-user-images
+      privileged: true
+      ports:
+      - 9000:9000
+      volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/nfs-1/config/portainer:/data

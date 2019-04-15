@@ -1,0 +1,16 @@
+rancher:
+  services:
+    sonarr:
+      image: linuxserver/sonarr
+      container_name: sonarr
+      restart: always
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+      ports:
+      - 8989:8989
+      volumes:
+      - /mnt/nfs-1/config/sonarr:/config
+      - /mnt/nfs-1/TV:/tv
+      - /mnt/nfs-1/Downloads:/data/downloads
