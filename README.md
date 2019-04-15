@@ -177,7 +177,7 @@ OR (this seems to work, but it's showing as "os" in portainer at the same level 
 
 ### Managment
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/organizr.yml
+- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
 
 ### Files / backup
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
@@ -285,6 +285,14 @@ No configuration needed for now (maybe after VPN setup)
 - Settings
 - Plex Media Server
 - Plex IP Adress or Hostname: Select the server - Verify Server
+
+
+### Heimdall
+http://10.0.0.200:5555
+Add all URL's listed above
+Add Sonarr, Radarr and Tautulli with API Key
+
+
 
 
 ### NextCloud:
