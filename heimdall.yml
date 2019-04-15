@@ -3,11 +3,11 @@ rancher:
       heimdall:
         image: linuxserver/heimdall
         container_name: heimdall
-      restart: always
+        restart: always
         environment:
-        - PUID=1000
-        - PGID=1000
-        - TZ=Europe/London
+          PUID: 1020
+          PGID: 1020
+          TZ: Europe/Stockholm
         volumes:
         - /mnt/nfs-1/config/heimdall:/config
         ports:
