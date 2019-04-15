@@ -12,7 +12,7 @@
 - [X] Setup Plex
 - [X] Setup Transmission
 - [X] Verify setup of portainer from .yml file insted of command
-- [ ] Get hardlinks from Radarr to work
+- [ ] Get hardlinks in Radarr to work
 - [ ] Complete setup of Sonarr
 - [ ] Test and create step by step for updating containers
 - [ ] Setup folders better??
@@ -23,7 +23,12 @@
 - [ ] Setup lychee or piwigo
 
 
-#### My variables:
+## Credits
+- Keith Walker's videos on how to get permissions and networking to work (Part 1 and 2):
+- + https://www.youtube.com/channel/UCRf6gQ4eg6QE_8UhTrghpPQ
+
+
+### My variables:
 IP to FreeNAS: 10.0.0.113
 
 Gateway to my router: 10.0.0.138
@@ -139,7 +144,7 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 - cd /var/lib/rancher/conf/cloud-config.d/
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/rancheros-cloud-config.yml
 - vi rancheros-cloud-config.yml
-- edit SERVER and SHARE (i for insert, esc for exit out of insert, :wq for quit) with save
+- edit SERVER and SHARE (i for insert, esc for exit out of insert, :wq for quit with save)
 - sudo reboot
 - check that nfs share is there, ssh in again and:
 - sudu su
@@ -149,7 +154,7 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 ## Add portainer docker 
 - docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/nfs-1/config/portainer:/data --restart always --name portainer portainer/portainer
 
-OR (HAVE TO TEST THIS)
+OR (this seems to work, but it's showing as "os" in portainer at the same level as other dockers)
 - sudo su -
 - cd /var/lib/rancher/conf/cloud-config.d/
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml
