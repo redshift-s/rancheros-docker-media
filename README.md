@@ -1,6 +1,4 @@
 # rancheros-docker-media
-# Images:
-#![alt text](http://url/to/img.png)
 
 ## TODO
 - [X] Setup RancherOS on FreeNAS
@@ -26,7 +24,7 @@
 
 ## Credits
 - Keith Walker's videos on how to get permissions and networking to work (Part 1 and 2):
-- + https://www.youtube.com/channel/UCRf6gQ4eg6QE_8UhTrghpPQ
+  + https://www.youtube.com/channel/UCRf6gQ4eg6QE_8UhTrghpPQ
 
 
 ### My variables:
@@ -108,6 +106,11 @@ FreeNAS volume2: ssd (TODO)
 ## Login to find IP of rancherOS VM:
 - Press ... on the virtual machine and select Serial
 - Check IP of rancher machine, starts with same as local network 10.0.0.XXX
+
+<details>
+    <summary>Picture</summary>
+    <img src="https://user-images.githubusercontent.com/49619612/56118316-4cbae680-5f6a-11e9-800f-f4ebb9d7d325.PNG">
+</details>
 
 
 
