@@ -3,8 +3,9 @@
 #![alt text](http://url/to/img.png)
 
 ## TODO
-- [X] Setup RancherOS
-- [X] Setup NFS shares that works
+- [X] Setup RancherOS on FreeNAS
+- [X] Setup Networking so dockers can be accessed on local network
+- [X] Setup shares(NFS) that works with permissions inside dockers and accessible in windows as Windows Share
 - [X] Setup Portainer
 - [X] Setup Radarr
 - [X] Setup Ombi
@@ -225,15 +226,15 @@ http://10.0.0.200:8181
 - HD-1080p: uncheck HDTV-1080p and Remux-1080p
 - HD-720p/1080p: uncheck HDTV-1080p, Remux-1080p, Remux-2160p, HDTV-720p
 - Indexers
-- +
+- "+"
 - Add provider (Username / API Key / Passkey )
 - Download Client
-- +
+- "+"
 - Transmission
 - Name: Transmission
 - Host: 10.0.0.200
 - Connect
-- +
+- "+"
 - Telegram
 - Name
 - Bot Token: Get it from Telegram
