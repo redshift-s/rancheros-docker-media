@@ -15,7 +15,8 @@
 - [ ] Get hardlinks in Radarr to work
 - [ ] Complete setup of Sonarr
 - [ ] Test and create step by step for updating containers
-- [ ] Setup folders better??
+- [ ] Setup folder structure better??
+- [ ] Modify so all config and VM raw file is stored on a different FreeNAS volume (ssd)
 - [ ] Get NextCloud working with nginx/letsencrypt
 - [ ] Configuration to get access to dockers outside network (VPN?)
 - [ ] Setup resilio-sync
@@ -39,7 +40,7 @@ DNS2: 4.2.2.2
 
 FreeNAS volume1: tank
 
-FreeNAS volume2: ssd
+FreeNAS volume2: ssd (TODO)
 
 
 
