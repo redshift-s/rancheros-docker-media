@@ -292,5 +292,12 @@ Modify this guide to work on RancherOS?
 - https://blog.ssdnodes.com/blog/installing-nextcloud-docker/
 
 
+
+# FAQ
+How does this make the nfs share available inside the VM?
+
+
+
 ### Notes
 - https://old.reddit.com/r/usenet/wiki/docker
+
