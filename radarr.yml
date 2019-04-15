@@ -12,5 +12,5 @@ rancher:
       - 7878:7878
       volumes:
       - /mnt/nfs-1/config/radarr:/config
-      - /mnt/nfs-1/Movies:/data/movies
-      - /mnt/nfs-1/Downloads:/data/downloads
+      - /mnt/nfs-1/Movies:/movies
+      - /mnt/nfs-1/Downloads:/downloads

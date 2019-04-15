@@ -13,4 +13,4 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/sonarr:/config
       - /mnt/nfs-1/TV:/tv
-      - /mnt/nfs-1/Downloads:/data/downloads
+      - /mnt/nfs-1/Downloads:/downloads

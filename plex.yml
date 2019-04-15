@@ -13,5 +13,5 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/plex:/config
       - /mnt/nfs-1/config/plex/transcode:/transcode
-      - /mnt/nfs-1/Movies:/data
-      - /mnt/nfs-1/TV:/data
+      - /mnt/nfs-1/Movies:/data/movies
+      - /mnt/nfs-1/TV:/data/tv

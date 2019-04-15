@@ -15,4 +15,4 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/transmission:/config
       - /mnt/nfs-1/config/transmission/watch:/watch
-      - /mnt/nfs-1/Downloads:/data/downloads
+      - /mnt/nfs-1/Downloads:/downloads
