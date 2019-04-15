@@ -14,5 +14,5 @@ rancher:
       - 55555:55555
       volumes:
       - /mnt/nfs-1/config/resilio-sync:/config
-      - /mnt/nfs-1/Downloads:/downloads
+      - /mnt/nfs-1/Downloads:/data/downloads
       - /mnt/nfs-1/Sync:/sync

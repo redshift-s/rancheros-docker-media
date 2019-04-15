@@ -12,4 +12,4 @@ rancher:
       - 9117:9117
       volumes:
       - /mnt/nfs-1/config/jackett:/config
-      - /mnt/nfs-1/Downloads:/downloads
+      - /mnt/nfs-1/Downloads:/data/downloads
