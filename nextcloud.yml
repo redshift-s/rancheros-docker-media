@@ -9,7 +9,7 @@ rancher:
         PUID: 1020
         TZ: Europe/Stockholm
       ports:
-      - 8877:443
+      - 1443:443
       volumes:
       - /mnt/nfs-1/config/nextcloud:/config
       - /mnt/nfs-1/NextCloud:/data

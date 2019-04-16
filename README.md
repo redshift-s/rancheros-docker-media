@@ -204,14 +204,29 @@ The .yml files contains recepies/configuration for the docker containers. Just g
   
 ### Files / backup (not completed)
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml  
-`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml  
 
+
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml  
+
 `sudo reboot`
+
+## Configure your dns for nextcloud
+- Create a user on duckdns.org
+- Add fruit-nextcloud as a domain
+- Note down your Duck DNS token
+- Get a domain, in this guide, the example fruit.org is used
+- Point your domain nextcloud.fruit.org to fruit-nextcloud.duckdns.org
+- vi letsencrypt.yml
+- Change the TZ, URL, DUCKDNSTOKEN and EMAIL variables.
+- vi mariadb.yml
+- Change the MSQL_ROOT_PASSWORD
+- sudo reboot
+
 
 
 ## Access dockers:
