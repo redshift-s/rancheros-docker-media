@@ -15,7 +15,7 @@ rancher:
         VALIDATION: duckdns
         DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
         EMAIL: user@fruit.org
-      vlumes:
+      volumes:
       - /mnt/nfs-1/config/letsencrypt:/config
       ports:
       - 443:443
