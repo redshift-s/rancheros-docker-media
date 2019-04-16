@@ -4,7 +4,8 @@
 This is inteded as a complete step by guide step for FreeNAS users to set up different software with dockers on their FreeNAS system.  
 Since FreeNAS does not have docker native, it needs to be done inside a VM, and RancherOS is used for that. The hard part with this setup is getting networking, permissions and shares to work.  
 This guide is including how to get access to the files on Windows as well, but if you just use Linux, the steps with SMB can probably be skipped.  
-Why docker over jails? Portability to another system, the amount of premade docker "recepies" is huge.  
+Why docker over jails? Portability to another system, the amount of premade docker "recipes" is huge.  
+Why jail over docker? Performance. Jails have direct access to hardware, VM does not.  
 Take a look at the dockers from linuxserver.io for more applications https://hub.docker.com/r/linuxserver
 
 
@@ -148,7 +149,7 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 
 
 ## Mount NFS share inside RancherOS VM
-This step creates a docker
+This step creates a docker that makes your FreeNAS dataset available as a NFS share inside the VM.
 - `ssh rancher@10.0.0.200`
 - rancher_password
 - `sudo su -`
@@ -157,7 +158,7 @@ This step creates a docker
 - `vi rancheros-cloud-config.yml`
 - edit SERVER and SHARE (i for insert, esc for exit out of insert, :wq for quit with save)
 - `sudo reboot`
-- check that nfs share is there, ssh in again and:
+- check that nfs share is now avilable, ssh in again and:
 - `sudu su`
 - `cd /mnt/nfs-1/`
 
@@ -187,7 +188,7 @@ The .yml files contains recepies/configuration for the docker containers. Just g
 `cd /var/lib/rancher/conf/cloud-config.d/`
 
 ### Portainer
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml  
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml  
 
 ### Media
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/plex.yml  
