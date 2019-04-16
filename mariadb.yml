@@ -1,8 +1,8 @@
 rancher:
   services:
-    mariadb:
+    mariadb-nextcloud:
       image: linuxserver/mariadb
-      container_name: mariadb
+      container_name: mariadbn-extcloud
       restart: always
       environment:
         PGID: 1020
