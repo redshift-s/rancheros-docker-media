@@ -223,6 +223,8 @@ The .yml files contains recepies/configuration for the docker containers. Just g
 - Point your domain nextcloud.fruit.org to fruit-nextcloud.duckdns.org
 - vi letsencrypt.yml
 - Change the TZ, URL, DUCKDNSTOKEN and EMAIL variables.
+- vi mariadb.yml
+- Change the MSQL_ROOT_PASSWORD
 - sudo reboot
 
 
