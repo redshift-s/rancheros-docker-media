@@ -13,3 +13,5 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/nextcloud:/config
       - /mnt/nfs-1/NextCloud:/data
+      networks:
+        proxynet

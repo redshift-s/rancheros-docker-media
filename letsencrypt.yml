@@ -1,5 +1,9 @@
 #EXTRA_DOMAINS: <extradomains> #optional
 rancher:
+
+  networks:
+    proxyet
+    
   services:
     letsencrypt:
       image: linuxserver/letsencrypt
@@ -21,3 +25,5 @@ rancher:
       - 443:443
       - 80:80
       restart: unless-stopped
+      networks:
+        proxynet
