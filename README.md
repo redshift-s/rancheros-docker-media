@@ -279,6 +279,7 @@ http://10.0.0.200:8181
 
 
 ### Ombi
+- Select login with Plex and follow the instructions to use Plex as login
 - Movies - Radarr
 - Enabled: check
 - Hostname or IP: 10.0.0.200
