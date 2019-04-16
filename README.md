@@ -138,7 +138,7 @@ This steps creates a VM with the OS "RancherOS", called "Docker Host" in FreeNAS
 This changes the default IP assigned to the VM and makes sure it uses correct network settings.  
 In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH with more functionality on Windows)
 - `ssh rancher@10.0.0.XXX`
-- `ifconfig (check network interfaces)`
+- `ifconfig` (to check network interfaces, should be eth0 as main interface)
 - `sudo ros config get rancher.network`
 - `sudo ros config set rancher.network.interfaces.eth0.address 10.0.0.200/24`
 - `sudo ros config set rancher.network.interfaces.eth0.gateway 10.0.0.138`
@@ -151,33 +151,33 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 
 ## Mount NFS share inside RancherOS VM
 This step creates a docker
-- ssh rancher@10.0.0.200
+- `ssh rancher@10.0.0.200`
 - rancher_password
-- sudo su -
-- cd /var/lib/rancher/conf/cloud-config.d/
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/rancheros-cloud-config.yml
-- vi rancheros-cloud-config.yml
+- `sudo su -`
+- `cd /var/lib/rancher/conf/cloud-config.d/`
+- `wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/rancheros-cloud-config.yml`
+- `vi rancheros-cloud-config.yml`
 - edit SERVER and SHARE (i for insert, esc for exit out of insert, :wq for quit with save)
-- sudo reboot
+- `sudo reboot`
 - check that nfs share is there, ssh in again and:
-- sudu su
-- cd /mnt/nfs-1/
+- `sudu su`
+- `cd /mnt/nfs-1/`
 
 
 ## Create media folders with the 1020 user
 This is an important part to get permissions to work across dockers and windows share.  
 Check out the video in Credits (Part 2) for more details.  
 Creates the 1020 user inside the RancherOS and creates the folders for the share. This makes sure the 1020 user owns the folders.
-- ssh rancher@10.0.0.200
+- `ssh rancher@10.0.0.200`
 - rancher_password
-- sudo su -
-- adduser -u 1020 share_user
+- `sudo su -`
+- `adduser -u 1020 share_user`
 - share_user_password
-- su share_user
-- cd /mnt/nfs-1/
-- mkdir Downloads
-- mkdir TV
-- mkdir Movies
+- `su share_user`
+- `cd /mnt/nfs-1/`
+- `mkdir Downloads`
+- `mkdir TV`
+- `mkdir Movies`
 
 
 ## Add dockers
@@ -185,33 +185,33 @@ First get root permissions, then navigate to the cloud-config-d folder. All file
 The .yml files contains recepies/configuration for the docker containers. Just get the files of the dockers you want, and reboot to install them.  
 **(Protip: copy the files to your own github and modify TZ to your own timezone)**
 
-- sudo su -
-- cd /var/lib/rancher/conf/cloud-config.d/
+- `sudo su -`
+- `cd /var/lib/rancher/conf/cloud-config.d/`
 
 ### Portainer
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml
 
 ### Media
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/radarr.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/sonarr.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/transmission.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/plex.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/jackett.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/ombi.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/radarr.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/sonarr.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/transmission.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/plex.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/jackett.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/ombi.yml
 
 ### Managment
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
 
 ### Files / backup
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml
 
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml
-- wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml
+- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml
 
 - sudo reboot
 
