@@ -1,5 +1,14 @@
 # rancheros-docker-media
 
+## What is this?
+This is inteded as a complete step by step for FreeNAS users to set up different software with dockers on the FreeNAS system.  
+Since FreeNAS does not have docker native, it needs to be done inside a VM, and RancherOS is used for that. The hard part with this setup is getting networking, permissions and shares to work.  
+This guide is including how to get access to the files on Windows as well, but if you just use Linux, the steps with SMB can probably be skipped.  
+Why docker over jails? Portability to another system, the amount of premade docker "recepies" is huge.  
+Take a look at the dockers from linuxserver.io for more applications https://hub.docker.com/r/linuxserver
+
+
+
 ## TODO
 - [X] Setup RancherOS on FreeNAS
 - [X] Setup Networking so dockers can be accessed on local network
@@ -27,25 +36,30 @@
   + https://www.youtube.com/channel/UCRf6gQ4eg6QE_8UhTrghpPQ
 
 
-### My variables:
-IP to FreeNAS: 10.0.0.113
+### Variables for my system/hardware
+IP to FreeNAS: 10.0.0.113  
+Gateway to my router: 10.0.0.138  
+DNS1: 8.8.8.8  
+DNS2: 4.2.2.2  
+Network interface in FreeNAS: re1  
+FreeNAS volume1: tank  
+FreeNAS volume2: ssd (TODO)  
 
-Gateway to my router: 10.0.0.138
+#### Variables that can be changed
+Name of user/group in FreeNAS: rancher  
+User/Group ID: 1020  
+Dataset name: rancher  
 
-DNS1: 8.8.8.8
 
-DNS2: 4.2.2.2
 
-FreeNAS volume1: tank
-
-FreeNAS volume2: ssd (TODO)
 
 
 
 # Step by step guide:
 
 # In FreeNAS GUI
-## Create user and dataset
+## Create user/group
+This creates the user and group to be used for the dataset and share
 - Account
 - Group
 - Add group
@@ -61,6 +75,8 @@ FreeNAS volume2: ssd (TODO)
 - Full Name: rancher user
 - E-mail: rancher@freenas.local
 - Password: rancher_user_password x2
+
+## Create dataset
 - Storage
 - Create dataset
 - Dataset Name: rancher
@@ -70,11 +86,13 @@ FreeNAS volume2: ssd (TODO)
 - Owner (group): rancher
 - Set permission recursivley: check
 
-## Start NFS and SMB:
+## Start services:
 - Services
-- Enable and start NFS and SMB and check "Start on boot"
+- Enable and start NFS, SMB and SSH and check "Start on boot"
 
 ## Shares
+This step creates the share as both Linux and Windows share.  
+The important part about this is creating the unix share with the root / wheel user and group. There should be a better way to set this up, but at least it works this way.
 - Sharing
 - Unix
 - Add unix share
@@ -83,13 +101,14 @@ FreeNAS volume2: ssd (TODO)
 - Maproot Group: wheel
 - OK
 - Windows share
-- Add windows share:
+- Add windows share
 - Path: /mnt/tank/rancher
 - Name: rancher
 - Apply Default Permissions: uncheck
 
 
 ## Setup RancherOS
+This steps creates a VM with the OS "RancherOS", called "Docker Host" in FreeNAS
 - Virtual Machines 
 - Add
 - Dropdown: Docker Host
@@ -115,6 +134,8 @@ FreeNAS volume2: ssd (TODO)
 
 
 # In RancherOS (SSH)
+## Configure the network
+This changes the default IP assigned to the VM and makes sure it uses correct network settings.  
 In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH with more functionality on Windows)
 - ssh rancher@10.0.0.XXX
 - ifconfig (check network interfaces)
@@ -128,20 +149,8 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 - sudo reboot
 
 
-## create media folders with 1020 user
-- ssh rancher@10.0.0.200
-- rancher_password
-- sudo su -
-- adduser -u 1020 share_user
-- enter password
-- su share_user
-- cd /mnt/nfs-1/
-- mkdir Downloads
-- mkdir TV
-- mkdir Movies
-
-
 ## Mount NFS share inside RancherOS VM
+This step creates a docker
 - ssh rancher@10.0.0.200
 - rancher_password
 - sudo su -
@@ -155,18 +164,33 @@ In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH 
 - cd /mnt/nfs-1/
 
 
-## Add portainer docker 
-- docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/nfs-1/config/portainer:/data --restart always --name portainer portainer/portainer
+## Create media folders with the 1020 user
+This is an important part to get permissions to work across dockers and windows share.  
+Check out the video in Credits (Part 2) for more details.  
+Creates the 1020 user inside the RancherOS and creates the folders for the share. This makes sure the 1020 user owns the folders.
+- ssh rancher@10.0.0.200
+- rancher_password
+- sudo su -
+- adduser -u 1020 share_user
+- share_user_password
+- su share_user
+- cd /mnt/nfs-1/
+- mkdir Downloads
+- mkdir TV
+- mkdir Movies
 
-OR (this seems to work, but it's showing as "os" in portainer at the same level as other dockers)
+
+## Add dockers
+First get root permissions, then navigate to the cloud-config-d folder. All files added to that folder is loaded on boot.  
+The .yml files contains recepies/configuration for the docker containers. Just get the files of the dockers you want, and reboot to install them.  
+**(Protip: copy the files to your own github and modify TZ to your own timezone)**
+
 - sudo su -
 - cd /var/lib/rancher/conf/cloud-config.d/
+
+### Portainer
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml
 
-
-## Add more dockers (Protip: copy files to own github and modify TZ)
-- sudo su -
-- cd /var/lib/rancher/conf/cloud-config.d/
 ### Media
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/radarr.yml
 - wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/sonarr.yml
@@ -195,6 +219,9 @@ OR (this seems to work, but it's showing as "os" in portainer at the same level 
 ## Access dockers:
 Portainer:
 http://10.0.0.200:9000
+
+Heimdall:
+http://10.0.0.200:5555
 
 Radarr:
 http://10.0.0.200:7878
@@ -302,7 +329,11 @@ Modify this guide to work on RancherOS?
 
 
 # FAQ
-How does this make the nfs share available inside the VM?
+**Q:** How does this make the nfs share available inside the VM?  
+**A:** The file rancheros-cloud-config.yml creates a docker that makes your share available  
+
+**Q:** Can I use my existing media folders and modify it to be used like in this guide?  
+**A:** Needs to be tested, important parts are users: root, wheel and 1020. And to create the media(TV, Movies etc) folders with the 1020 user.
 
 
 
