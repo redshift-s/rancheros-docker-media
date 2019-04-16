@@ -10,7 +10,7 @@ rancher:
         PUID: 1020
         PGID: 1020
         TZ: Europe/Stockholm
-        URL: nextcloud-fruit.duckdns.org
+        URL: fruit-nextcloud.duckdns.org
         SUBDOMAINS: wildcard
         VALIDATION: duckdns
         DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
