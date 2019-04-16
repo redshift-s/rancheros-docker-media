@@ -1,0 +1,15 @@
+rancher:
+  services:
+    duckdns:
+      image: linuxserver/duckdns
+      container_name: duckdns
+      restart: unless-stopped
+      environment:
+        PUID: 1020
+        PGID: 1020
+        TZ: Europe/Stockholm
+        SUBDOMAINS: subdomain1,subdomain2
+        TOKEN: token
+        LOG_FILE: true
+      volumes:
+      - /mnt/nfs-1/config/duckdns:/config
