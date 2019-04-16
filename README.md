@@ -192,28 +192,27 @@ The .yml files contains recepies/configuration for the docker containers. Just g
 - `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/portainer.yml
 
 ### Media
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/plex.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/radarr.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/sonarr.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/transmission.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/jackett.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/ombi.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/plex.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/radarr.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/sonarr.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/transmission.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/jackett.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/ombi.yml
 
 ### Managment
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
 
 ### Files / backup (not completed)
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml
+`wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml
 
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml
-- `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml
-
-- sudo reboot
+`sudo reboot`
 
 
 ## Access dockers:
