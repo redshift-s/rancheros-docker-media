@@ -21,3 +21,5 @@ rancher:
       - 443:443
       - 80:80
       restart: unless-stopped
+  network:
+    proxynet
