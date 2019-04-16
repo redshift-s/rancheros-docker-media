@@ -12,8 +12,8 @@ rancher:
         TRANSMISSION_INCOMPLETE_DIR: /data/downloads/incomplete
       ports:
       - 9092:9091
-      - 51413:51413
-      - 51413:51413/udp
+      - 51414:51413
+      - 51414:51413/udp
       volumes:
       - /mnt/nfs-1/config/transmission1:/config
       - /mnt/nfs-1/config/transmission1/watch:/watch
