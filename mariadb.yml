@@ -9,9 +9,9 @@ rancher:
         PUID: 1020
         TZ: Europe/Stockholm
         MYSQL_ROOT_PASSWORD: root_password
-        MYSQL_DATABASE: main_db
-        MYSQL_USER: db_user
-        MYSQL_PASSWORD: db_user_password
+        MYSQL_DATABASE: docker
+        MYSQL_USER: nextcloud
+        MYSQL_PASSWORD: nextcloud
       ports:
       - 3306:3306
       volumes:
