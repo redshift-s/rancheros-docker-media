@@ -1,0 +1,22 @@
+rancher:
+  services:
+    transmission1:
+      image: linuxserver/transmission
+      container_name: transmission1
+      restart: always
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+        TRANSMISSION_DOWNLOAD_DIR: /data/downloads/complete
+        TRANSMISSION_INCOMPLETE_DIR: /data/downloads/incomplete
+      ports:
+      - 9092:9091
+      - 51414:51413
+      - 51414:51413/udp
+      volumes:
+      - /mnt/nfs-1/config/transmission1:/config
+      - /mnt/nfs-1/config/transmission1/watch:/watch
+      - /mnt/nfs-1/Downloads:/data/downloads
+      - /mnt/nfs-1/Movies:/data/movies
+      - /mnt/nfs-1/TV:/data/tv
