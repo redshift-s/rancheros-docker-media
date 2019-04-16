@@ -1,0 +1,20 @@
+rancher:
+  services:
+    proxy:
+      image: jwilder/nginx-proxy:alpine
+      restart: unless-stopped
+      labels:
+        - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+      container_name: nextcloud-proxy
+      networks:
+      - nextcloud_network
+      ports:
+      - 80:80
+      - 443:443
+      volumes:
+      - ./proxy/conf.d:/etc/nginx/conf.d:rw
+      - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+      - ./proxy/html:/usr/share/nginx/html:rw
+      - ./proxy/certs:/etc/nginx/certs:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro

@@ -1,27 +1,15 @@
-#NOT DONE
-services:
+rancher:
   letsencrypt:
-    image: linuxserver/letsencrypt
-    container_name: letsencrypt
-    cap_add:
-      - NET_ADMIN
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - URL=yourdomain.url
-      - SUBDOMAINS=www,
-      - VALIDATION=http
-      - DNSPLUGIN=cloudflare #optional
-      - DUCKDNSTOKEN=<token> #optional
-      - EMAIL=<e-mail> #optional
-      - DHLEVEL=2048 #optional
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=<extradomains> #optional
-      - STAGING=false #optional
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nextcloud-letsencrypt
+    depends_on:
+    - proxy
+    networks:
+    - nextcloud_network
     volumes:
-      - </path/to/appdata/config>:/config
-    ports:
-      - 443:443
-      - 80:80 #optional
+    - ./proxy/certs:/etc/nginx/certs:rw
+    - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+    - ./proxy/html:/usr/share/nginx/html:rw
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped

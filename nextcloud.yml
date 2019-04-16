@@ -1,6 +1,6 @@
 rancher:
   services:
-    nextcloud:
+    app:
       image: linuxserver/nextcloud
       container_name: nextcloud
       restart: always
@@ -8,8 +8,19 @@ rancher:
         PGID: 1020
         PUID: 1020
         TZ: Europe/Stockholm
+        VIRTUAL_HOST: nextcloud.YOUR-DOMAIN
+        LETSENCRYPT_HOST: nextcloud.YOUR-DOMAIN
+        LETSENCRYPT_EMAIL: YOUR-EMAIL
       ports:
       - 8877:443
       volumes:
       - /mnt/nfs-1/config/nextcloud:/config
       - /mnt/nfs-1/NextCloud:/data
+      depends_on:
+      - letsencrypt
+      - proxy
+      - db
+      networks:
+      - nextcloud_network
+  networks:
+    nextcloud_network:
