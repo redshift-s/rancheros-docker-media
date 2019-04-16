@@ -1,7 +1,7 @@
 # rancheros-docker-media
 
 ## What is this?
-This is inteded as a complete step by step for FreeNAS users to set up different software with dockers on the FreeNAS system.  
+This is inteded as a complete step by guide step for FreeNAS users to set up different software with dockers on their FreeNAS system.  
 Since FreeNAS does not have docker native, it needs to be done inside a VM, and RancherOS is used for that. The hard part with this setup is getting networking, permissions and shares to work.  
 This guide is including how to get access to the files on Windows as well, but if you just use Linux, the steps with SMB can probably be skipped.  
 Why docker over jails? Portability to another system, the amount of premade docker "recepies" is huge.  
