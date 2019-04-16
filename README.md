@@ -38,6 +38,7 @@ Take a look at the dockers from linuxserver.io for more applications https://hub
 
 ### Variables for my system/hardware
 IP to FreeNAS: 10.0.0.113  
+Freenas version: 11.2-U3  
 Gateway to my router: 10.0.0.138  
 DNS1: 8.8.8.8  
 DNS2: 4.2.2.2  
@@ -49,9 +50,6 @@ FreeNAS volume2: ssd (TODO)
 Name of user/group in FreeNAS: rancher  
 User/Group ID: 1020  
 Dataset name: rancher  
-
-
-
 
 
 
