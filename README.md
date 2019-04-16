@@ -137,16 +137,16 @@ This steps creates a VM with the OS "RancherOS", called "Docker Host" in FreeNAS
 ## Configure the network
 This changes the default IP assigned to the VM and makes sure it uses correct network settings.  
 In shell on local computer (Linux subsystem for Windows 10, (Ubuntu) to get SSH with more functionality on Windows)
-- ssh rancher@10.0.0.XXX
-- ifconfig (check network interfaces)
-- sudo ros config get rancher.network
-- sudo ros config set rancher.network.interfaces.eth0.address 10.0.0.200/24
-- sudo ros config set rancher.network.interfaces.eth0.gateway 10.0.0.138
-- sudo ros config set rancher.network.interfaces.eth0.mtu 1500
-- sudo ros config set rancher.network.interfaces.eth0.dhcp false
-- sudo ros config set rancher.network.nameservers "['8.8.8.8','4.2.2.2','10.0.0.138']"
-- sudo ros config get rancher.network
-- sudo reboot
+- `ssh rancher@10.0.0.XXX`
+- `ifconfig (check network interfaces)`
+- `sudo ros config get rancher.network`
+- `sudo ros config set rancher.network.interfaces.eth0.address 10.0.0.200/24`
+- `sudo ros config set rancher.network.interfaces.eth0.gateway 10.0.0.138`
+- `sudo ros config set rancher.network.interfaces.eth0.mtu 1500`
+- `sudo ros config set rancher.network.interfaces.eth0.dhcp false`
+- `sudo ros config set rancher.network.nameservers "['8.8.8.8','4.2.2.2','10.0.0.138']"`
+- `sudo ros config get rancher.network`
+- `sudo reboot`
 
 
 ## Mount NFS share inside RancherOS VM
