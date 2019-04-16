@@ -13,14 +13,14 @@ rancher:
         URL: nextcloud.fruit.org
         SUBDOMAINS: wildcard
         VALIDATION: duckdns
-        DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34 #change to real one
-        EMAIL: user@fruit.org #optional
-        DHLEVEL: 2048 #optional
-        ONLY_SUBDOMAINS: false #optional
-        STAGING: false #optional
+        DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
+        EMAIL: user@fruit.org
+        DHLEVEL: 2048
+        ONLY_SUBDOMAINS: 'false'
+        STAGING: 'false'
       vlumes:
       - /mnt/nfs-1/config/letsencrypt:/config
       ports:
       - 443:443
-      - 80:80 #optional
+      - 80:80
       restart: unless-stopped
