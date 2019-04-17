@@ -40,6 +40,31 @@ wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/
 wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml
 wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/ombi.yml
 wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nginx.yml
+wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/nextcloud/letsencrypt.yml
 
 sudo system-docker run -d --net=host --name busydash husseingalal/busydash
+
+
+wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/nextcloud-linuxserver/letsencrypt.yml
+wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/nextcloud-linuxserver/mariadb.yml
+wget https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/nextcloud-linuxserver/nextcloud.yml
+
+
+#Reset nextcloud password
+https://docs.nextcloud.com/server/15/admin_manual/configuration_user/reset_admin_password.html
+
+
+
+
+#Create Telegram channel with bot
+Create private channel
+Msg @BotFather
+/newbot
+name_of_bot
+note down the token
+invite the bot to your channel
+
+# Get Telegram chat_id
+The easiest way is to invite @get_id_bot in your chat and then type inside your chat:
+/my_id@get_id_bot
 

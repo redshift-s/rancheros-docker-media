@@ -3,6 +3,8 @@ rancher:
     nextcloud:
       image: linuxserver/nextcloud
       container_name: nextcloud
+      networks:
+      - proxynet
       restart: always
       environment:
         PGID: 1020
@@ -13,5 +15,3 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/nextcloud:/config
       - /mnt/nfs-1/NextCloud:/data
-      networks:
-      - proxynet

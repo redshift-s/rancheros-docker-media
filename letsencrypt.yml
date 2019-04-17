@@ -4,23 +4,23 @@ rancher:
     letsencrypt:
       image: linuxserver/letsencrypt
       container_name: letsencrypt
+      networks:
+      - proxynet
       cap_add:
       - NET_ADMIN
       environment:
         PUID: 1020
         PGID: 1020
         TZ: Europe/Stockholm
-        URL: fruit-nextcloud.duckdns.org
-        SUBDOMAINS: wildcard
+        URL: duckdns.org
+        SUBDOMAINS: fruit-nextcloud
         VALIDATION: duckdns
         DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
         EMAIL: user@fruit.org
-        #ONLY_SUBDOMAINS: 'false'
+        ONLY_SUBDOMAINS: 'true'
       volumes:
       - /mnt/nfs-1/config/letsencrypt:/config
       ports:
       - 443:443
       - 80:80
       restart: unless-stopped
-      networks:
-      - proxynet

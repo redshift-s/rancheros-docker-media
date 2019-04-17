@@ -24,9 +24,12 @@ Take a look at the dockers from linuxserver.io for more applications https://hub
 - [ ] Complete setup of Sonarr
 - [ ] Test and create step by step for updating containers
 - [ ] Setup folder structure better??
+- [X] Get NextCloud working
+- [X] Configuration to get access to dockers outside network (letsencrypt) (NextCloud)
+- [ ] Add more services to be available otuside network
+- [ ] Use own domain insted of duckdns
+- [ ] Change location of config files for database (got a tip that it should not be stored on nfs shares, can create more database locks)
 - [ ] Modify so all config and VM raw file is stored on a different FreeNAS volume (ssd)
-- [ ] Get NextCloud working with nginx/letsencrypt
-- [ ] Configuration to get access to dockers outside network (VPN?)
 - [ ] Setup resilio-sync
 - [ ] Setup duplicati
 - [ ] Setup lychee or piwigo
@@ -202,10 +205,12 @@ The .yml files contains recepies/configuration for the docker containers. Just g
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/tautulli.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/heimdall.yml
   
-### Files / backup (not completed)
+### Nextcloud and reverse proxy
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/nextcloud.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/mariadb.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/letsencrypt.yml  
+
+### Files
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/resilio-sync.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/duplicati.yml  
 `wget` https://raw.githubusercontent.com/redshift-s/rancheros-docker-media/master/lychee.yml  
@@ -216,17 +221,18 @@ The .yml files contains recepies/configuration for the docker containers. Just g
 `sudo reboot`
 
 ## Configure your dns for nextcloud
-- Create a user on duckdns.org
-- Add fruit-nextcloud as a domain
-- Note down your Duck DNS token
-- Get a domain, in this guide, the example fruit.org is used
-- Point your domain nextcloud.fruit.org to fruit-nextcloud.duckdns.org
-- vi letsencrypt.yml
-- Change the TZ, URL, DUCKDNSTOKEN and EMAIL variables.
-- vi mariadb.yml
-- Change the MSQL_ROOT_PASSWORD
-- sudo reboot
+- Create a user on duckdns.org  
+- Add fruit-nextcloud as a domain  
+- Note down your Duck DNS token  
+- vi letsencrypt.yml  
+- Change the TZ, SUBDOMAINS, DUCKDNSTOKEN and EMAIL variables.  
+- vi mariadb.yml  
+- Change the MSQL_ROOT_PASSWORD  
+- sudo reboot  
 
+TODO for using your own domain, and not just duck dns  
+- Get a domain, in this guide, the example fruit.org is used  
+- Point your domain nextcloud.fruit.org to fruit-nextcloud.duckdns.org  
 
 
 ## Access dockers:
@@ -336,10 +342,39 @@ Add Sonarr, Radarr and Tautulli with API Key
 
 
 
-### NextCloud:
-Modify this guide to work on RancherOS?
-- https://blog.ssdnodes.com/blog/installing-nextcloud-docker/
+### NextCloud: (TODO: More explainations and details of where to do stuff)
+SSH: docker create network proxynet  
+Portainer:  
+Modify network of maridab, nextcloud and letsencrypt and leave bridge, join proxynet  
+restart containers  
 
+https://10.0.0.200:1443
+Username: admin  
+Password: your_password  
+Data folder: /data  
+Database user: nextcloud  
+Database password: nextcloud  
+Database: nextcloud  
+Host: mariadb-nextcloud:3306  
+
+stop nextcloud container  
+config\nextcloud\www\nextcloud\config\config.php    
+Edit:  
+1 => 'fruit-nextcloud.duckdns.org',  
+'overwrite.cli.url' => 'https://fruit-nextcloud.duckdns.org',  
+'overwritehost' => 'fruit-nextcloud.duckdns.org',  
+'overwriteprotocol' => 'https',  
+start nextcloud container  
+
+stop letsencrypt container  
+config/letsencrypt/nginx/proxy-confs/nextcloud.subdomain.conf.sample  
+rename to nextcloud.subdomain.conf  
+change: server_name nextcloud.*;  
+to  
+server_name fruit-nextcloud.*;  
+start letsencrypt container  
+
+port forward on your router: 443 to 10.0.0.200:443  
 
 
 # FAQ
