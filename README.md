@@ -20,7 +20,7 @@ Heimdall application to link to all of the different applications you want:
     <summary>Picture</summary>
     <img src="https://user-images.githubusercontent.com/49619612/56311493-759bd100-614e-11e9-9da6-de0f26e98550.PNG">
 </details>
-Nextcloud accessible outside network with HTTPS:
+Nextcloud accessible outside network with HTTPS:  
 <details>
     <summary>Picture</summary>
     <img src="https://user-images.githubusercontent.com/49619612/56312139-d7106f80-614f-11e9-8f14-ef21c5c58c2c.PNG">
