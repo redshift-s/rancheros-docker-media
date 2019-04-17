@@ -6,10 +6,10 @@ Since FreeNAS does not have docker native, it needs to be done inside a VM, and 
 This guide is including how to get access to the files on Windows as well, but if you just use Linux, the steps with SMB can probably be skipped.  
 Why docker over jails? Portability to another system, the amount of premade docker "recipes" is huge.  
 Why jail over docker? Performance. Jails have direct access to hardware, VM does not.  
-Take a look at the dockers from linuxserver.io for more applications https://hub.docker.com/r/linuxserver
+Take a look at the dockers from linuxserver.io for more applications https://hub.docker.com/r/linuxserver / https://fleet.linuxserver.io/  
 
-
-
+  
+  
 ## TODO
 - [X] Setup RancherOS on FreeNAS
 - [X] Setup Networking so dockers can be accessed on local network
@@ -27,19 +27,19 @@ Take a look at the dockers from linuxserver.io for more applications https://hub
 - [X] Get NextCloud working
 - [X] Configuration to get access to dockers outside network (letsencrypt) (NextCloud)
 - [ ] Add more services to be available otuside network
-- [ ] Use own domain insted of duckdns
+- [ ] Use owned domain insted of duckdns
 - [ ] Change location of config files for database (got a tip that it should not be stored on nfs shares, can create more database locks)
 - [ ] Modify so all config and VM raw file is stored on a different FreeNAS volume (ssd)
 - [ ] Setup resilio-sync
 - [ ] Setup duplicati
 - [ ] Setup lychee or piwigo
-
+  
 
 ## Credits
 - Keith Walker's videos on how to get permissions and networking to work (Part 1 and 2):
   + https://www.youtube.com/channel/UCRf6gQ4eg6QE_8UhTrghpPQ
 
-
+  
 ### Variables for my system/hardware
 IP to FreeNAS: 10.0.0.113  
 Freenas version: 11.2-U3  
@@ -58,7 +58,8 @@ Dataset name: rancher
 
 
 # Step by step guide:
-
+  
+  
 # In FreeNAS GUI
 ## Create user/group
 This creates the user and group to be used for the dataset and share
@@ -343,10 +344,11 @@ Add Sonarr, Radarr and Tautulli with API Key
 
 
 ### NextCloud: (TODO: More explainations and details of where to do stuff)
-SSH: docker create network proxynet  
-Portainer:  
-Modify network of maridab, nextcloud and letsencrypt and leave bridge, join proxynet  
-restart containers  
+This video might be helpfull to understand stuff: https://www.youtube.com/watch?v=I0lhZc25Sro  
+  
+port forward on your router: 443 to 10.0.0.200:443  
+port forward on your router: 80 to 10.0.0.200:80  (for letsencrypt to know you own the DNS)  
+  
 
 https://10.0.0.200:1443
 Username: admin  
@@ -357,6 +359,7 @@ Database password: nextcloud
 Database: nextcloud  
 Host: mariadb-nextcloud:3306  
 
+#### Config files neeeds to be modified to set up https access from outside the network
 stop nextcloud container  
 config\nextcloud\www\nextcloud\config\config.php    
 Edit:  
@@ -374,18 +377,33 @@ to
 server_name fruit-nextcloud.*;  
 start letsencrypt container  
 
-port forward on your router: 443 to 10.0.0.200:443  
+sudo restart
 
+Create a seperate docker network for the nextcloud stuff:  
+SSH: docker create network proxynet  
+Portainer:  
+Modify network of maridab, nextcloud and letsencrypt and leave bridge, join proxynet  
+  
+Now nextcloud should be available at https://fruit-nextcloud.duckdns.org  
 
 # FAQ
 **Q:** How does this make the nfs share available inside the VM?  
 **A:** The file rancheros-cloud-config.yml creates a docker that makes your share available  
 
 **Q:** Can I use my existing media folders and modify it to be used like in this guide?  
-**A:** Needs to be tested, important parts are users: root, wheel and 1020. And to create the media(TV, Movies etc) folders with the 1020 user.
+**A:** Needs to be tested, important parts are users: root, wheel and 1020. And to create the media(TV, Movies etc) folders with the 1020 user.  
+
+**Q:** How do I modify the .yml files, download my own, or reset containers if I did something wrong?  
+**A:** Usefull commands:  
+`sudo su -`  
+`cd /var/lib/rancher/conf/cloud-config.d/`  
+`rm radarr.yml` To remove files and then:   
+`wget https://raw.githubusercontent.com/YOURGITHUB/rancheros-docker-media/master/radarr.yml`  
+To remove all config for a docker:  
+`cd /mnt/nfs-1/config`  
+`rm -r radarr`  
 
 
 
 ### Notes
 - https://old.reddit.com/r/usenet/wiki/docker
-
