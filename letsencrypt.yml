@@ -15,8 +15,7 @@ rancher:
         TZ: Europe/Stockholm
         URL: duckdns.org
         SUBDOMAINS: fruit-nextcloud
-        VALIDATION: duckdns
-        DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
+        VALIDATION: http
         EMAIL: user@fruit.org
         ONLY_SUBDOMAINS: 'true'
       ports:
