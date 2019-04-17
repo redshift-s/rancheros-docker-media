@@ -5,7 +5,7 @@ rancher:
       container_name: mariadb-nextcloud
       networks:
       - proxynet
-      restart: always
+      restart: unless-stopped
       environment:
         PGID: 1020
         PUID: 1020
