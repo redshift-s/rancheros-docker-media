@@ -25,7 +25,11 @@ Nextcloud accessible outside network with HTTPS:
     <summary>Picture</summary>
     <img src="https://user-images.githubusercontent.com/49619612/56312139-d7106f80-614f-11e9-8f14-ef21c5c58c2c.PNG">
 </details>
-  
+Portainer to get a overview of all dockers running:  
+<details>
+    <summary>Picture</summary>
+    <img src="https://user-images.githubusercontent.com/49619612/56313070-f6a89780-6151-11e9-9a43-d2b43b7dcb0d.PNG">
+</details>
     
     
     
