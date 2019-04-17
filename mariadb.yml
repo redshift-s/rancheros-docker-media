@@ -17,4 +17,4 @@ rancher:
       volumes:
       - /mnt/nfs-1/config/mariadb:/config
       networks:
-        proxynet
+      - proxynet

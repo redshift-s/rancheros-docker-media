@@ -1,9 +1,5 @@
 #EXTRA_DOMAINS: <extradomains> #optional
 rancher:
-
-  networks:
-    proxyet
-
   services:
     letsencrypt:
       image: linuxserver/letsencrypt
@@ -19,6 +15,7 @@ rancher:
         VALIDATION: duckdns
         DUCKDNSTOKEN: aed90380-c6de-46a3-bce2-efc070297f34
         EMAIL: user@fruit.org
+        #ONLY_SUBDOMAINS: 'false'
       volumes:
       - /mnt/nfs-1/config/letsencrypt:/config
       ports:
@@ -26,5 +23,4 @@ rancher:
       - 80:80
       restart: unless-stopped
       networks:
-        proxynet
-    
+      - proxynet
