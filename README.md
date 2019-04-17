@@ -7,9 +7,28 @@ This guide is including how to get access to the files on Windows as well, but i
 Why docker over jails? Portability to another system, the amount of premade docker "recipes" is huge.  
 Why jail over docker? Performance. Jails have direct access to hardware, VM does not.  
 Take a look at the dockers from linuxserver.io for more applications https://hub.docker.com/r/linuxserver / https://fleet.linuxserver.io/  
-
   
   
+## What is the result of this setup?
+All files stored outside the VM, and accessible in e.g windows share:  
+<details>
+    <summary>Picture</summary>
+    <img src="https://user-images.githubusercontent.com/49619612/56311487-72084a00-614e-11e9-9935-83cd5783dc3c.png">
+</details>
+Heimdall application to link to all of the different applications you want:  
+<details>
+    <summary>Picture</summary>
+    <img src="https://user-images.githubusercontent.com/49619612/56311493-759bd100-614e-11e9-9da6-de0f26e98550.PNG">
+</details>
+Nextcloud accessible outside network with HTTPS:
+<details>
+    <summary>Picture</summary>
+    <img src="https://user-images.githubusercontent.com/49619612/56312139-d7106f80-614f-11e9-8f14-ef21c5c58c2c.PNG">
+</details>
+  
+    
+    
+    
 ## TODO
 - [X] Setup RancherOS on FreeNAS
 - [X] Setup Networking so dockers can be accessed on local network
@@ -26,6 +45,7 @@ Take a look at the dockers from linuxserver.io for more applications https://hub
 - [ ] Setup folder structure better??
 - [X] Get NextCloud working
 - [X] Configuration to get access to dockers outside network (letsencrypt) (NextCloud)
+- [X] Intro and result photos
 - [ ] Add more services to be available otuside network
 - [ ] Use owned domain insted of duckdns
 - [ ] Change location of config files for database (got a tip that it should not be stored on nfs shares, can create more database locks)
