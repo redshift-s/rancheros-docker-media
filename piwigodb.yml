@@ -1,0 +1,20 @@
+rancher:
+  services:
+    piwigodb:
+      image: linuxserver/mariadb
+      container_name: piwigodb
+      networks:
+      - proxynet
+      restart: unless-stopped
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+        MYSQL_ROOT_PASSWORD: root_password
+        MYSQL_DATABASE: piwigo
+        MYSQL_USER: piwigo
+        MYSQL_PASSWORD: piwigo
+      ports:
+      - 3307:3306
+      volumes:
+      - /mnt/nfs-1/config/piwigodb:/config
