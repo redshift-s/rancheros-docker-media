@@ -1,4 +1,3 @@
-#EXTRA_DOMAINS: <extradomains> #optional
 rancher:
   services:
     letsencrypt:
@@ -6,7 +5,7 @@ rancher:
       container_name: letsencrypt
       networks:
       - proxynet
-      restart: unless-stopped
+      restart: always
       cap_add:
       - NET_ADMIN
       environment:
