@@ -1,0 +1,14 @@
+rancher:
+  services:
+    piwigo:
+      image: linuxserver/piwigo
+      container_name: piwigo
+      restart: unless-stopped
+      environment:
+        PGID: 1020
+        PUID: 1020
+        TZ: Europe/Stockholm
+      ports:
+      - 4466:80
+      volumes:
+      - /mnt/nfs-1/config/piwigo:/config

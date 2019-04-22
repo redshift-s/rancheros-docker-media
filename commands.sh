@@ -68,3 +68,16 @@ invite the bot to your channel
 The easiest way is to invite @get_id_bot in your chat and then type inside your chat:
 /my_id@get_id_bot
 
+
+
+NOTES:
+
+The reason hardlinks aren't working is because you are using fragmented volume mappings
+What you want is this:
+Transmission docker volume mapping:
+      - /mnt/nfs-1/Downloads:/data/Downloads
+Radarr volume mappings:
+      - /mnt/nfs-1:/data
+Radarr has to have a unified file system to be able to create hardlinks
+In your current configuration, radarr is using /data/movies and /data/downloads, but it will now use /data/Movies and /data/Downloads.
+ You should also change Transmission settings from using /data/downloads to /data/Downloads
