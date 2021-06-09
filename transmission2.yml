@@ -1,8 +1,8 @@
 rancher:
   services:
-    transmission1:
+    transmission2:
       image: linuxserver/transmission
-      container_name: transmission1
+      container_name: transmission2
       restart: always
       environment:
         PGID: 1020
@@ -11,7 +11,7 @@ rancher:
         TRANSMISSION_DOWNLOAD_DIR: /data/downloads/complete
         TRANSMISSION_INCOMPLETE_DIR: /data/downloads/incomplete
       ports:
-      - 9092:9091
+      - 9093:9091
       - 51414:51413
       - 51414:51413/udp
       volumes:
